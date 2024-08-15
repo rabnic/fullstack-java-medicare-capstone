@@ -38,9 +38,3 @@ Medicare is a dynamic e-healthcare web application designed to facilitate the on
 - Implement a CI/CD pipeline using Jenkins.
 - Host the application on an AWS EC2 instance.
 - Automation testing should be performed before entering the CI/CD pipeline.
-
-## Getting Started
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/yourusername/medicare.git
