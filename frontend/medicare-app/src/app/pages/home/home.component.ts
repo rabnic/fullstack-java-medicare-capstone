@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../services/shop.service';
+import { AdminService } from '../../services/admin.service';
 import { Product } from '../../models/product';
+import { Category } from '../../models/category';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -15,12 +17,18 @@ import { NgForm, FormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   public products: Product[] | null = null;
+  public categories: Category[] = [];
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService, private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.adminService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
   }
+
 
   public getProducts(): void {
     this.shopService.getProducts().subscribe(
@@ -50,12 +58,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // In your component.ts
-  categories: string[] = ['Electronics', 'Clothing', 'Books', 'Health'];
 
 
-  filterByCategory(category: string) {
-    // Your filter logic here
+  filterByCategory(key: string) {
+    console.log("key==", typeof key);
+    let id = parseInt(key);
+    const results: Product[] = [];
+    for (const product of this.products || []) {
+      if (product.category.id === id) {
+        results.push(product);
+      }
+    }
+    this.products = results;
+  }
+
+  resetFilters() {
+    this.getProducts();
   }
 
   sortProducts(sortOption: string) {
