@@ -1,0 +1,71 @@
+<section class="container" id="main-container">
+
+    <div class="container mb-4">
+        <div class="content text-center">
+            <h2 class="fw-bold">Your Health, Delivered</h2>
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel name="key"
+                id="searchName" class="form-control mr-sm-2" placeholder="Search products..." required>
+
+            <!-- Filter by Category -->
+            <select class="form-control mr-sm-2" (change)="filterByCategory(key.value)" #key="ngModel" ngModel
+                name="key">
+                <option value="" disabled selected>Filter by Category</option>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+
+            <!-- Sort by Name or Price -->
+            <select class="form-control mr-sm-2" (change)="sortProducts(key.value)" #key="ngModel" ngModel name="key">
+                <option value="" disabled selected>Sort</option>
+                <option value="nameAsc">Name: A to Z</option>
+                <option value="nameDesc">Name: Z to A</option>
+                <option value="priceAsc">Price: Low to High</option>
+                <option value="priceDesc">Price: High to Low</option>
+            </select>
+            <button type="button" class="btn btn-primary mr-4">
+                Clear Filters</button>
+        </form>
+
+
+    </div>
+    <hr class="hr hr-blurry" style="background-color: black;" />
+    <div class="container mt-2">
+        @defer ( on idle; when products == null ) {
+        <div class="row">
+            <div class="col-md-4" *ngFor="let product of products">
+                <div class="card" style="height: 350px;">
+                    <div class="card-img-container" style="height: 40%;">
+                        <img [src]="product?.imageUrl" alt="Product Image" class="card-img-top"
+                            style="height: 100%; object-fit: cover;" />
+                    </div>
+                    <div class="card-body text-center" style="height: 60%;">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">R{{ product.price }}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" [routerLink]="['/product-detail', product.id]">View
+                                more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        } @loading {
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        } @error {
+        <!-- error template fragment -->
+        <p>An loading error occurred</p>
+        }
+
+    </div>
+</section>

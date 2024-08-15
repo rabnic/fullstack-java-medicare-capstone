@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand logo" routerLink="">Medicare</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="">Home</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/manage-products">Manage</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/manage-products">About</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/manage-products">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/manage-products">Login</a></li>
+                <li class="nav-item" routerLink="/cart">
+                    <a class="btn btn-tertiary" routerLink="/cart">
+                        <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
+                        </svg>
+
+                        <span
+                            class="badge bg-dark text-white ms-1 rounded-pill">{{cartService.getCartQuantity()}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

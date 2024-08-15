@@ -1,10 +1,7 @@
 package com.nichoscode.medicare.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -19,19 +16,23 @@ public class Product implements Serializable {
     private String imageUrl;
     private String brand;
     private String description;
-    @JsonProperty("isStocked")
-    private Boolean isStocked;
+    @JsonProperty("isDiscontinued")
+    private Boolean isDiscontinued;
     private Double price;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     public Product() {
     }
 
-    public Product(String name, String imageUrl, String brand, String description, Boolean isStocked, Double price) {
+    public Product(String name, String imageUrl, String brand, String description, Boolean isDiscontinued, Double price) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.brand = brand;
         this.description = description;
-        this.isStocked = isStocked;
+        this.isDiscontinued = isDiscontinued;
         this.price = price;
     }
 
@@ -75,12 +76,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Boolean getStocked() {
-        return isStocked;
+    public Boolean getIsDiscontinued() {
+        return isDiscontinued;
     }
 
-    public void setStocked(Boolean stocked) {
-        isStocked = stocked;
+    public void setIsDiscontinued(Boolean stocked) {
+        isDiscontinued = stocked;
     }
 
     public Double getPrice() {
@@ -91,6 +92,14 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -99,7 +108,7 @@ public class Product implements Serializable {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
-                ", isStocked=" + isStocked +
+                ", isDiscontinued=" + isDiscontinued +
                 ", price=" + price +
                 '}';
     }

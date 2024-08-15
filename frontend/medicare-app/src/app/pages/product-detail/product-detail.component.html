@@ -1,0 +1,71 @@
+<!-- content -->
+<section class="py-5">
+    <div class="container">
+        <h6 class="mb-3"><a routerLink="" class="text-body"><i class="fa fa-long-arrow-left"></i>&nbsp;Continue
+                shopping</a></h6>
+        <hr>
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+                        href="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp">
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                            src="{{product?.imageUrl}}" />
+                    </a>
+                </div>
+
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        {{product?.name}}
+                    </h4>
+                    <h6 class="lead">
+                        {{product?.brand}}
+                    </h6>
+                    <div class="d-flex flex-row my-3">
+                        <span class="text-success ">In stock</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="h5">R{{product?.price}}</span>
+                    </div>
+
+                    <p>
+                        {{product?.description}}
+                    </p>
+
+
+
+                    <hr />
+
+                    <!-- <div class="row mb-4">
+                       
+                        <div class="col-md-4 col-6 mb-3">
+                            <label class="mb-2 d-block">Quantity</label>
+                            <div class="input-group mb-3" style="width: 170px;">
+                                <button class="btn btn-outline-primary px-3" type="button"
+                                    (click)="cartService.removeFromCart(product?.id)" id="button-addon1"
+                                    data-mdb-ripple-color="dark">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input type="text" class="form-control text-center border border-secondary"
+                                    placeholder="0" aria-label="Example text with button addon"
+                                    aria-describedby="button-addon1" value="{{getCurrentQuantityInCart()}}" />
+
+                                <button class="btn btn-outline-primary px-3" type="button"
+                                    (click)="cartService.addToCart(product)" id="button-addon2"
+                                    data-mdb-ripple-color="dark">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <button href="#" class="btn btn-primary shadow-0" type="button"
+                        (click)="cartService.addToCart(product)"> <i class="fa fa-cart-plus"></i> Add to cart
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
